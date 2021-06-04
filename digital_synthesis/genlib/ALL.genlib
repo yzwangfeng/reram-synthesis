@@ -1,0 +1,14 @@
+GATE RESET     1  Y=CONST0;
+GATE SET       1  Y=CONST1;
+GATE INV       1  Y=!A;                        PIN * INV 1 999 0 0 0 0
+GATE BUFF      1  Y=A;                         PIN * NONINV 1 999 0 0 0 0
+GATE NOR2X1    3  Y=!(A+B);                    PIN * INV 1 999 0 0 0 0
+GATE NOR3X1    5  Y=!(A+B+C);                  PIN * INV 1 999 0 0 0 0
+GATE NOR4X1    7  Y=!(A+B+C+D);                PIN * INV 1 999 0 0 0 0
+GATE NAND2X1   2  Y=!(A*B);                    PIN * INV 1 999 0 0 0 0
+GATE NAND3X1   3  Y=!(A*B*C);                  PIN * INV 1 999 0 0 0 0
+GATE NAND4X1   4  Y=!(A*B*C*D);                PIN * INV 1 999 0 0 0 0
+GATE OR2X1     2  Y=A+B;                       PIN * NONINV 1 999 0 0 0 0
+GATE OR4X1     6  Y=A+B+C+D;                   PIN * NONINV 1 999 0 0 0 0
+GATE AND2X1    3  Y=A*B;                       PIN * NONINV 1 999 0 0 0 0
+GATE XOR2X1    4  Y=(A*!B)+(!A*B);             PIN * UNKNOWN 1 999 0 0 0 0

@@ -1,0 +1,18 @@
+.model adder
+.inputs A B
+.outputs Co S
+.gate NOT A=A Y=G1
+.gate NOT A=B Y=G2
+
+.gate NOR2X1 A=G1 B=G2 Y=G4
+.gate NOR2X1 A=A B=B Y=G5
+.gate NOT A=G4 Y=G6
+.gate NOT A=G5 Y=G7
+.gate NOT A=G6  Y=G8
+.gate NOT A=G7  Y=G9
+.gate NOT A=G4  Y=G10
+.gate NOR2X1 A=G5 B=G10 Y=Co
+.gate NOT A=Co Y=G12
+.gate NOR2X1 A=G12 B=G8 Y=G13
+.gate NOR2X1 A=G9 B=G13 Y=S
+.end
