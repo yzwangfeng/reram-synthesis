@@ -10,7 +10,7 @@ This project contains three parts:
 
 ## hybrid-synthesis: a synthesis flow for the digital mode and the analog mode (multiply-and-accumulate)
 * function: synthesize an application in the skeleton representation onto the target architecture with hybrid ReRAM crossbars
-* compiling: cd hybrid_synthesis; make
+* compiling: cd hybrid-synthesis; make
 * usage: write the application using nested skeletons in main.cpp to get its latency and bounding box
 * todo: integrate the digital synthesis flow and support the analog mode
 
