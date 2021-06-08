@@ -1,4 +1,4 @@
-# reram-ynthesis
+# reram-synthesis
 A synthesis flow for hybrid processing-in-ReRAM modes
 
 This project contains three parts:
