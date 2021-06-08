@@ -1,24 +1,24 @@
-# RRAM_Synthesis
-A synthesis flow for hybrid processing-in-RRAM modes
+# reram-ynthesis
+A synthesis flow for hybrid processing-in-ReRAM modes
 
 This project contains three parts:
-## digital_synthesis: a synthesis flow for the digital mode (stateful logic)
-* function: synthesize a logic function onto a digital RRAM crossbar
-* compiling: cd digital_synthesis/abc; make libabc.a; cd ..; make
-* usage: identify the benchmark in Main.cpp to get its latency and area
+## digital-synthesis: a synthesis flow for the digital mode (stateful logic)
+* function: synthesize a logic function onto a digital ReRAM crossbar
+* compiling: cd digital-synthesis/abc; make libabc.a; cd ..; make
+* usage: identify the benchmark in main.cpp to get its latency and area
 * todo: integrate the technology mapping flow
 
 ## hybrid-synthesis: a synthesis flow for the digital mode and the analog mode (multiply-and-accumulate)
-* function: synthesize an application in the skeleton representation onto the target architecture with hybrid RRAM crossbars
+* function: synthesize an application in the skeleton representation onto the target architecture with hybrid ReRAM crossbars
 * compiling: cd hybrid_synthesis; make
-* usage: write the application using nested skeletons in Main.cpp to get its latency and bounding box
+* usage: write the application using nested skeletons in main.cpp to get its latency and bounding box
 * todo: integrate the digital synthesis flow and support the analog mode
 
-## simulator: a simulator for RRAM crossbars
-* function: simulate an RRAM micro-instruction sequence and evaluate its performance
+## simulator: a simulator for ReRAM crossbars
+* function: simulate an ReRAM micro-instruction sequence and evaluate its performance
 * compiling: cd simulator; make
-* usage: write the application using pre-defined kernels in Main.cpp to get its latency, area, energy, etc.
-* todo: support more stateful logic families and more processing-in-RRAM modes
+* usage: write the application using pre-defined kernels in main.cpp to get its latency, area, energy, etc.
+* todo: support more stateful logic families and more processing-in-ReRAM modes
 
 ## reference: 
 
