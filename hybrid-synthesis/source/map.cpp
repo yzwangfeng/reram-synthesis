@@ -115,7 +115,58 @@ void Map::compare() {
 }
 
 void Map::allocate_bounding_box_analog() {
-
+    /*
+     * reduce、pipe与此相似
+     */
+    vector<Box*> analog_boxes;
+    if (hybrid & 2 != 2) {  // 不能用模拟模式计算
+        return;
+    }
+    for (Skeleton *child : children) {
+        if (child->st != PRIMITIVE) {   // 只检查skeleton+primitive的组合
+            child->allocate_bounding_box_analog();
+        } else {
+            /*
+             * 枚举论文中五种可能的skeleton+primitive组合，得到初始bounding box大小
+             */
+            Box *analog_box = new Box();
+            switch (((Primitive*) child)->pt) {
+                case ADD:
+                    analog_box->width = inputs.size();
+                    analog_box->height = 2;
+                    break;
+                case MUL:
+                    analog_box->width = analog_box->height = inputs.size();
+                    break;
+            }
+            /*
+             * 操作融合：检查pipe(mul, add)和pipe(add, add)，将其合并为一个bounding box，这里未给出代码
+             */
+            /*
+             * 将超过阵列大小的bounding box拆分，这里未考虑宽度和高度均过大的情况
+             */
+            if (analog_box->width > XBAR_LENGTH) {  // 宽度过大，按列拆分即可
+                while (analog_box->width > XBAR_LENGTH) {
+                    analog_boxes.push_back(new Box(NULL, -1, -1, XBAR_LENGTH, XBAR_LENGTH, analog_box->height));
+                    analog_box->width -= XBAR_LENGTH;
+                }
+                analog_boxes.push_back(new Box(NULL, -1, -1, analog_box->width, analog_box->width, analog_box->height));
+            }
+            if (analog_box->height > XBAR_LENGTH) { // 高度过大，按行拆分，最后额外增加一个阵列累加部分和，这里未考虑需要加法树的情况
+                int adder_num = 1;
+                while (analog_box->height > XBAR_LENGTH) {
+                    analog_boxes.push_back(new Box(NULL, -1, -1, analog_box->width, analog_box->width, XBAR_LENGTH));
+                    analog_box->height -= XBAR_LENGTH;
+                    ++adder_num;
+                }
+                analog_boxes.push_back(new Box(NULL, -1, -1, analog_box->width, analog_box->width, analog_box->height));
+                analog_boxes.push_back(new Box(NULL, -1, -1, analog_box->width, analog_box->width, adder_num));
+            }
+        }
+    }
+    /*
+     * 根据优化目标选择串行映射或并行映射，将analog_boxes里较小的bounding box合并在一个阵列中，这里未给出实现
+     */
 }
 
 void Map::simulate() {
