@@ -4,8 +4,8 @@
  *
  */
 
-#ifndef SYNTHESIS_H_
-#define SYNTHESIS_H_
+#ifndef CIRCUIT_H_
+#define CIRCUIT_H_
 
 #include <map>
 #include <set>
@@ -15,8 +15,6 @@
 #include <cmath>
 
 #include "abc.h"
-
-//#define OUTPUT_SET
 
 #define INF 1000000
 
@@ -34,10 +32,16 @@ struct Var {
 
     string gate;
 
-    Var(string name_, bool is_in_, bool is_out_, bool visit_, string gate_ = "NOR");
+    Var(string name_, bool is_in_, bool is_out_, string gate_ = "NAND", bool visit_ = false);
 
     /*
-     * variables and functions used in STAR
+     * variables and functions used in technology mapping (DOM)
+     */
+
+    // TO DO
+
+    /*
+     * variables and functions used in physical mapping (STAR)
      */
     bool visit;
     int min_cycle;
@@ -68,7 +72,13 @@ struct Circuit {
     void write_dot();   // visualize the circuit
 
     /*
-     * variables and functions used in STAR
+     * variables and functions used in technology mapping (DOM)
+     */
+
+    // TO DO
+
+    /*
+     * variables and functions used in physical mapping (STAR)
      */
     bool cover_input;
     double alpha;
@@ -81,11 +91,11 @@ struct Circuit {
     void minimize_set_sequence();  // reorganize the operation sequence to minimize the set operations
 
     pair<int, int> minimize_cell();    // compute the minimal cell number
-    pair<int, int> optimize_cell(bool align = true);    // compute the optimal cell number (minimize cycle * area)
+    pair<int, int> optimize_cell(bool align = true);  // compute the optimal cell number (minimize cycle * area)
     int compute_set(int cell);
 
     int mark_min_cycle(string now);
     double compute_max_parallelism();
 };
 
-#endif /* SYNTHESIS_H_ */
+#endif /* CIRCUIT_H_ */

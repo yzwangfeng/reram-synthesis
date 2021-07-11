@@ -1,7 +1,7 @@
 /*
  * circuit.cpp
  *
- * Basic circuit functions
+ * basic circuit functions
  */
 
 #include <algorithm>
@@ -27,9 +27,9 @@ vector<string> split(string str, string separator) {  //  split a string by the 
     return dest;
 }
 
-Var::Var(string name_, bool is_in_, bool is_out_, bool visit_, string gate_)
+Var::Var(string name_, bool is_in_, bool is_out_, string gate_, bool visit_)
         :
-        name(name_), is_in(is_in_), is_out(is_out_), visit(visit_), gate(gate_) {
+        name(name_), is_in(is_in_), is_out(is_out_), gate(gate_), visit(visit_) {
     min_cycle = is_in ? 0 : INF;
     out_degree = left_out_degree = 0;
     need = false;
@@ -100,13 +100,13 @@ void Circuit::read_blif() {
     while (fin >> s && s != ".outputs") {
         if (s != "\\") {
             input.push_back(s);
-            graph[s] = new Var(s, true, false, true);
+            graph[s] = new Var(s, true, false, "NAND", true);
         }
     }
     while (fin >> s && s != ".gate") {
         if (s != "\\") {
             output.push_back(s);
-            graph[s] = new Var(s, false, true, false);
+            graph[s] = new Var(s, false, true, "NAND", false);
         }
     }
 
@@ -120,7 +120,7 @@ void Circuit::read_blif() {
 
         string out_cell = (*cells.rbegin()).substr(2);
         if (find(output.begin(), output.end(), out_cell) == output.end()) {
-            graph[out_cell] = new Var(out_cell, false, false, false, gate);
+            graph[out_cell] = new Var(out_cell, false, false, gate, false);
         }
 
         cells.erase(cells.begin());

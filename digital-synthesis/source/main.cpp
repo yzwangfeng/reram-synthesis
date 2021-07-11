@@ -5,7 +5,7 @@
 
 #include <dirent.h>
 
-#include "../include/circuit.h"
+#include "circuit.h"
 using namespace std;
 
 void get_file_name(string path, vector<string> &files) {
@@ -19,7 +19,15 @@ void get_file_name(string path, vector<string> &files) {
     closedir(dir);
 }
 
-void run_star(string dir, bool cover_input, double alpha, int max_set, int mode) {
+void run_technology_mapping(string dir) {
+    vector<string> benchmark;
+    get_file_name(dir, benchmark);
+    for (string s : benchmark) {
+        Circuit circuit(dir + "/" + s);
+    }
+}
+
+void run_physical_mapping(string dir, bool cover_input, double alpha, int max_set, int mode) {
     vector<string> benchmark;
     get_file_name(dir, benchmark);
     for (string s : benchmark) {
@@ -45,6 +53,7 @@ void run_star(string dir, bool cover_input, double alpha, int max_set, int mode)
 }
 
 int main() {
-    run_star("benchmark/EPFL", false, 1.0, INF, 0);
+    run_technology_mapping("benchmark/ISCAS85");
+    // run_physical_mapping("benchmark/EPFL", false, 1.0, INF, 0);
     return 0;
 }

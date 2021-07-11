@@ -1,12 +1,14 @@
 /*
  * star.cpp
  *
- * Synthesis Targeting high ARea utilization
+ * physical mapping (Synthesis Targeting high ARea utilization)
  */
 
 #include <algorithm>
 #include <cstring>
 #include "circuit.h"
+
+// #define OUTPUT_SET
 
 void Circuit::mark_pre(string now, string target) {
     if (graph[now]->visit || graph[now]->need || now == target) {
