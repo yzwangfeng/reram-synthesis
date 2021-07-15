@@ -13,6 +13,8 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <cstring>
 
 #include "abc.h"
 

@@ -14,7 +14,7 @@ CC = c++
 
 CFLAGS = -O3 -std=c++1y -Wall -m64 -march=native -I${DIR_INC}
 
-MY_LIBS = -lreadline -L./abc/ -labc
+MY_LIBS = -ldl -rdynamic -lreadline -ltermcap -lpthread -L./abc/ -labc
 
 LDFLAGS = -lm
 

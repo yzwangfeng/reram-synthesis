@@ -4,8 +4,6 @@
  * physical mapping (Synthesis Targeting high ARea utilization)
  */
 
-#include <algorithm>
-#include <cstring>
 #include "circuit.h"
 
 // #define OUTPUT_SET

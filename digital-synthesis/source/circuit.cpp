@@ -4,7 +4,6 @@
  * basic circuit functions
  */
 
-#include <algorithm>
 #include "circuit.h"
 
 vector<string> split(string str, string separator) {  //  split a string by the separator
